@@ -1,50 +1,60 @@
-# React + TypeScript + Vite
+# Simple Notification Engine 🔔
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A lightweight notification system built with modern web technologies to manage and display notifications efficiently. Built entirely using React Hooks for state management and functionality, without external state management libraries.
 
-Currently, two official plugins are available:
+## ⚡ Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Real-time notification updates using `useState` and `useContext`
+- Highly customizable with custom React components
+- Easy integration with various React projects
+- Zero external dependencies for core functionality
+- Queue management system using `useState`
 
-## Expanding the ESLint configuration
+## 🛠️ Technology Stack
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- **Frontend:**
+  - React 18 (Hooks only)
+  - TypeScript
+  - Vite (for fast development)
+- **Backend:**
+  - None
 
-- Configure the top-level `parserOptions` property like this:
+## 📦 Installation
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+```bash
+# Clone the repository
+git clone https://github.com/abyancore/simple-notification-engine.git
+
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+## 💻 Usage Example
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+```typescript
+import { useNotification } from "./hooks/useNotification";
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+function App() {
+  const notify = useNotify();
+
+  const handleClick = () => {
+    notify.addNotification({
+      message: "Hello Notify",
+    });
+  };
+
+  return <button onClick={handleClick}>Show Notification</button>;
+}
 ```
+
+## ⚙️ How It Works
+
+The notification system is built entirely with React Hooks:
+
+- `useState` for managing notification queue
+- `useContext` for providing notification context
+- `useCallback` for memoized notification handlers
+- Custom hooks for encapsulating notification logic
